@@ -1,0 +1,10 @@
+# this is a comment
+
+func xyz($n)
+	if ($n=20)
+		out
+	end if
+end func
+
+$a = 1
+`xyz($a)
