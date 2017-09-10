@@ -3,26 +3,19 @@
 	The preprocessor has the following functions as of now:
 	
 	- remove comments from the program
-	- remove empty lines
+	- remove empty lines, tabs, multiple spaces
 	- import the code of the imported files // not designing yet
 """
+import re
 
-fileName = "code.simple"
-code = open(fileName, 'r').read()
-
-index=[]
-# ------------ remove comments
-codeBlock = code.split("\n")
-for i in range(len(codeBlock)):
-	codeBlock[i] = codeBlock[i].strip()
-	if(codeBlock[i].startswith("#")):
-		index.append(i)
-		pass
-i=len(index)-1
-print(i)
-while i>-1:
-	codeBlock.pop(index.pop(i))
-	
-cat='\n'
-code = cat.join(codeBlock)
-print(code)
+def preprocessor(code):
+	# ------------ remove comments
+	code = re.sub(r'#.*(\n)', "\n", code)
+	# ------------ remove empty lines
+	code = re.sub(r'\n+', "\n", code)
+	code = code.strip()
+	# ------------ remove tabs
+	code = re.sub(r'\t+', "", code)
+	# ------------ remove multi spaces
+	code = re.sub(r' +', " ", code)
+	return code

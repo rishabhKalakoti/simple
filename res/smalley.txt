@@ -1,0 +1,46 @@
+<prog> -> <stmt_list>
+<stmt_list> -> <stmt_list><stmt> | <stmt>
+<stmt> -> <dec_list> | <def_list>
+<def_list> -> <func_def>
+<func_def> -> func <name>(<arg_list>) <sep> <dec_list> <sep> end func
+<arg_list> -> <arg_list> , <arg> | <arg> | NULL
+<arg> -> <func_dec> | <var_name> | <exp>
+<dec_list> -> <dec> <sep> <dec_list> | <dec>
+<dec> -> <dec> <sep> | <pre_dec> | <func_dec> | <var_dec> | <control_dec>
+<pre_dec> -> <comment> | <include>
+<comment> -> #<string>
+<include> -> include <name>
+<func_dec> -> <call_op><name>(<arg_list>)
+<call_op> -> `
+<var_dec> -> <var_name> = <var_def> | <var_name>[<index>] = <var_def>
+<var_name> -> $<name>
+<var_def> -> <exp> | <arr_def> | <var_name>
+<arr_def> -> [<exp_list>]
+<exp_list> -> <exp_list> , <exp> | <exp>
+<exp> -> '<string>' | <arith_exp>
+<control_dec> -> <loops> | <conditional>
+<loops> -> loop <loop_def> <sep> <loop_dec> <sep> end loop| loop <loop_def> <sep> <loop_dec> <sep> end loop
+<loop_dec> -> <dec_list><sep><loop_dec> | <loop_stmt><sep><loop_dec> | <loop_stmt> | <dec_list>
+<loop_stmt> -> out | pass
+<loop_def> -> <var_name> over <index> | if(<logic_exp>)
+<index> -> <int> | <var_name>
+<sep> -> '\n'
+<conditonal> -> if(<logic_exp>)<sep><dec_list>end if | if(<logic_exp>)<sep><dec_list>else <conditional>|if(<logic_exp>)<sep><dec_list>else<dec_list>end if
+<logic_exp> -> (logic_exp) | not <logic_exp> | <logic_exp> and <logic_exp> | <logic_exp> or <logic_exp> | <comp_exp>
+<comp_exp> -> <comp_exp><comp_op><comp_exp> | (<comp_exp>) | <arith_exp>
+<comp_op> -> == | != | <= | >= | > | <
+<arithExp> -> (<arith_exp>)|<arith_exp><arith_op1><arith_exp> | <term>
+<arith_op1> -> * | /
+<term> -> (<term>) | <term><arith_op2><factor> | <factor>
+<arith_op2> -> + | -
+<factor> -> (<type>)<factor>|(<factor>) | <func_dec> | <int> | <float> | '<char>'
+<type> -> int | char | string | float
+<float> -> <int>.<int>
+<int> -> <sign><int><num> | <num>
+<sign> -> + | - | NULL
+<string> -> <string><char> | <char>
+<char> -> <alpha> | <num> | <special>
+<num> -> 0 | ... | 9
+<alpha> -> a| ... | z | A | ... | Z | _
+<special> -> ' | " | / | ? | . | , | > | < | - | & | % | # 
+<name> -> <num> | <alpha> | <name><alpha> | <name><num>

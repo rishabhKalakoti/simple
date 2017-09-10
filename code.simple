@@ -1,10 +1,14 @@
 # this is a comment
-
-func xyz($n)
+$n = $n+3/2 and $n = $c + $d
+func xyz($n,$c) # asdasd
 	if ($n=20)
 		out
 	end if
 end func
-
-$a = 1
+loop i over 10
+i=i+1
+end loop 
+if(a==b and c==d)
+"asdasd" xxx "asdasd"
 `xyz($a)
+end if

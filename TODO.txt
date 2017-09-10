@@ -1,8 +1,8 @@
 @lex.py
 ......... lexical analyser .........
 # symbol table
-variables
-operators
+variables - .var
+operators - 
 if / loop
 function
 
