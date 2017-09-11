@@ -5,8 +5,8 @@
 <func_def> -> func <name>(<arg_list>) <sep> <dec_list> <sep> end func
 <arg_list> -> <arg_list> , <arg> | <arg> | NULL
 <arg> -> <func_dec> | <var_name> | <exp>
-<dec_list> -> <dec> <sep> <dec_list> | <dec>
-<dec> -> <dec> <sep> | <pre_dec> | <func_dec> | <var_dec> | <control_dec>
+<dec_list> -> <dec><dec_list> | <dec>
+<dec> -> <dec><sep> | <pre_dec> | <func_dec> | <var_dec> | <control_dec>
 <pre_dec> -> <comment> | <include>
 <comment> -> #<string>
 <include> -> include <name>

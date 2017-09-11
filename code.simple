@@ -1,10 +1,6 @@
 # this is a comment
-$n = $n+3/2 and $n = $c + $d
-func xyz($n,$c) # asdasd
-	if ($n=20)
-		out
-	end if
-end func
+$n = $n+3/2
+$n = $c + $d
 loop i over 10
 i=i+1
 end loop 
@@ -12,3 +8,13 @@ if(a==b and c==d)
 "asdasd" xxx "asdasd"
 `xyz($a)
 end if
+func xyz()
+
+end func
+
+if
+
+end if
+
+
+`xyz($a)
