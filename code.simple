@@ -1,20 +1,15 @@
 # this is a comment
 $n = $n+3/2
-$n = $c + $d
+$n = $c*($s) + $d
 loop i over 10
-i=i+1
+i=i+1+($i)
 end loop 
-if(a==b and c==d)
-"asdasd" xxx "asdasd"
+if($a==$b and $c==$d)
+
 `xyz($a)
 end if
 func xyz()
-
 end func
-
-if
-
+if($a)
 end if
-
-
 `xyz($a)
