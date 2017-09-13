@@ -12,4 +12,4 @@ func xyz()
 end func
 if($a)
 end if
-`xyz($a)
+`xyz($a, $asd, 10)

@@ -10,7 +10,7 @@ import re
 
 def preprocessor(code):
 	# ------------ remove comments
-	code = re.sub(r'#.*(\n)', "\n", code)
+	code = re.sub(r'\#.*(\n)', "\n", code)
 	# ------------ remove empty lines
 	code = re.sub(r'\n+', "\n", code)
 	code = code.strip()

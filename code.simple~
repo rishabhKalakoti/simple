@@ -1,10 +1,15 @@
 # this is a comment
+$n = $n+3/2
+$n = $c*($s) + $d
+loop i over 10
+i=i+1+($i)
+end loop 
+if($a==$b and $c==$d)
 
-func xyz($n)
-	if ($n=20)
-		out
-	end if
-end func
-
-$a = 1
 `xyz($a)
+end if
+func xyz()
+end func
+if($a)
+end if
+`xyz($a, $asd, 10_)
