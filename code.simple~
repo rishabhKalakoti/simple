@@ -1,0 +1,22 @@
+# this is a comment
+$n = $n+3/2
+$n = $c*($s) + $d
+
+loop $i over 10
+$i=i+1+($i)
+end loop
+
+loop if($a)
+$i=$i
+end loop
+
+
+if($a==$b and $c==$d)
+$a=10
+end if
+
+func xyz()
+$a=10
+end func
+
+`xyz($a, $asd, 10)

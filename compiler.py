@@ -10,7 +10,7 @@ code = pre.preprocessor(code)
 symbolTable = dict()
 code, symbolTable = lex.lexer(code)
 if(syntax.syntaxChecker(code, symbolTable) == False):
-	# print(syntax.ERROR)
+	print(syntax.ERROR)
 	print("DEAD!!")
 	exit()
 # --------------- print lex output
