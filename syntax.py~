@@ -8,7 +8,6 @@ def syntaxChecker(code, symbolTable):
 
 def isStmtList(code):
 	global ERROR
-	# <func_def> | <func_dec> | <var_dec> | <control_dec>
 	# ----------- func def
 	funcDef = re.findall(r'\#FUNC.*?\#END\#SPACE\#FUNC', code)
 	for stmt in funcDef:
@@ -27,7 +26,6 @@ def isStmtList(code):
 	# ----------- if stmt
 	ifStmt = re.findall(r'\#IF.*?\#END\#SPACE\#IF', code)
 	for stmt in ifStmt:
-		#print(stmt)
 		if not isIfStmt(stmt):
 			ERROR = ERROR + "Invalid if statement\n"
 			return False
@@ -41,7 +39,6 @@ def isStmtList(code):
 	return True
 
 def isFuncDef(stmt):
-	#print(stmt)
 	global ERROR
 	if re.match(r'\#FUNC\#SPACE\#FNAME\#LPAREN(.*)\#RPAREN(.*)\#END\#SPACE\#FUNC', stmt)==None:
 		ERROR = ERROR + "Invalid function syntax\n"
@@ -62,7 +59,6 @@ def isIfStmt(ifStmt):
 			ERROR = ERROR + "Invalid if syntax\n"
 			return False
 		i=ifStmt.index("#RPAREN#NEWLINE")
-		# print(ifStmt[10:i], ifStmt[i+15:-13])
 		if not isLogicExp(ifStmt[10:i]):
 			ERROR = ERROR + "Invalid logical expression\n"
 			return False	
@@ -106,25 +102,8 @@ def isLoopStmt(loopStmt):
 		ERROR = ERROR + "Invalid loop syntax\n"
 		return False
 	return True
-	
-	#print(loopStmt)
-	"""loopObj=re.match(r'\#LOOP\#SPACE(\#VAR|\#NUM)\#SPACE\#OVER\#SPACE(\#NUM|\#VAR)(.*)\#END\#SPACE\#LOOP',loopStmt)
-	loopObj1=re.match(r'\#LOOP\#SPACE\#IF\#LPEREN(.*)\#RPEREN.*\#END\#SPACE\#LOOP',loopStmt)
-	if loopObj1==None:
-		return False
-	elif loopObj1!=None:
-		if not (isLogicExp(loopObj1.group(3))):
-			return False	
-	if loopObj==None:
-		return False
-	if not (isStmtList(loopObj.group(3))):
-		#print(loopObj.group(3))
-		return False
-	else:
-		return True"""
 
 def isStmt(stmt):
-	# ----------- <var_asst><function_call>
 	if stmt=="#SPACE":
 		return True
 	if not (isFunctionCall(stmt) or isVarAsst(stmt)):
@@ -149,26 +128,20 @@ def isFunctionCall(stmt):
 	return True
 	
 def isParamList(params):
-	#print(params)
 	if(params=="" or params==None):
 		return True
 	elif(re.match(r'(.*)\#COMMA(.*)', params)==None):
 		if not isArithExp(params):
 			return False
 	elif re.match(r'(.*)\#COMMA(.*)', params)!=None:
-		#print("xyz")
 		for exp in re.split(r'\#COMMA', params):
 			if not isParamList(exp):
-				#print("@@@@@@@")
 				return False
-		#print(re.match(r'{(.*)\#COMMA(.*)}?$', params).group(1) , re.match(r'{(.*)\#COMMA(.*)}?$', params).group(2))
-		#	return False
 	else:
 		return False
 	return True
 	
 def isLogicExp(stmt):
-	#print(stmt)
 	if re.match(r'(\#SPACE)?\#NOT(\#SPACE)?(.*)(\#SPACE)?',stmt)!=None:
 		if isLogicExp(re.match(r'(\#SPACE)?\#NOT(\#SPACE)?(.*)(\#SPACE)?',stmt).group(3)):
 			return True
@@ -185,7 +158,6 @@ def isLogicExp(stmt):
 	return True
 
 def isRelExp(stmt):
-	#print(stmt)
 	stmt=re.sub(r'\#SPACE', "", stmt)
 	if stmt=="" or stmt==None:
 		return True
@@ -195,7 +167,6 @@ def isRelExp(stmt):
 	return True
 
 def isArithExp(stmt):
-	#print(stmt)
 	stmt=re.sub(r'\#SPACE', "", stmt)
 	for term in re.split(r'\#ARITHOP', stmt):
 		if not (isTerm(term)):
@@ -204,8 +175,6 @@ def isArithExp(stmt):
 
 def isTerm(term):
 	global ERROR
-	#term=re.sub("#SPACE", "", term)
-	#print(term)
 	if re.match(r'\#VAR$|\#NUM$|#LPAREN.*\#RPAREN$', term)==None:
 		ERROR=ERROR + "Invalid term\n"
 		return False
