@@ -1,0 +1,42 @@
+%{
+#include<math.h>
+#include<stdlib.h>
+%}
+
+FILE *yyin
+
+%%
+$[a-zA-Z0-9_]*	  		printf("#VAR");
+[0-9][0-9]*	  			printf("#NUM");
+[func [a-zA-Z0-9_]*]	printf("#FUNC#SPACE#FNAME");
+[ ]						printf("#SPACE");
+\n						printf("#NEWLINE");
+[ and | or ]			printf("#LOGICOP");
+`[a-zA-Z0-9_]*			printf("#LOGICOP#FNAME");
+,						printf("#COMMA");
+\(						printf("#LPAREN");
+\)						printf("#RPAREN");
+".*?"					printf("#STR");
+==|>|<|>=|<=|!=			printf("#RELOP");
+=						printf("#ASSTOP");
+\+|\-|\*|\/				printf("#ARITHOP");
+not						printf("#NOT");
+if						printf("#IF");
+func					printf("#FUNC");
+end						printf("#END");
+loop 					printf("#LOOP");
+over					printf("#OVER");
+next|out				printf("#BREAK");
+%%
+
+int yywrap()
+{
+	return 1;
+}
+
+int main(){
+	yyin=fopen("code.simple","r");
+	yylex();
+	fclose(yyin);
+	return 0;
+}
