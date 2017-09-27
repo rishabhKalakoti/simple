@@ -32,7 +32,7 @@ char list[10];
 char table[10];
 int yywrap()
 {
-	printf("\n\n-----------------SYMBOL TABLE-----------");
+	printf("\n\n-----------------SYMBOL TABLE-----------\n");
 	printTable();
 	return 1;
 }

@@ -501,9 +501,10 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "lex.l"
 #line 2 "lex.l"
-#include<math.h>
-#include<stdlib.h>
-#line 507 "lex.yy.c"
+#include<stdio.h>
+#include<string.h>
+#include"lex.h"
+#line 508 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -692,7 +693,7 @@ YY_DECL
     
 #line 8 "lex.l"
 
-#line 696 "lex.yy.c"
+#line 697 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -778,12 +779,12 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 9 "lex.l"
-printf("#VAR");
+printf("#VAR");addSymbol(yytext, "#VAR");
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 10 "lex.l"
-printf("#NUM");
+printf("#NUM");addSymbol(yytext, "#NUM");
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
@@ -886,7 +887,7 @@ YY_RULE_SETUP
 #line 30 "lex.l"
 ECHO;
 	YY_BREAK
-#line 890 "lex.yy.c"
+#line 891 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1887,16 +1888,21 @@ void yyfree (void * ptr )
 #line 30 "lex.l"
 
 
-
+char list[10];
+char table[10];
 int yywrap()
 {
+	printf("\n\n-----------------SYMBOL TABLE-----------");
+	printTable();
 	return 1;
 }
 
-int main(){
+int main()
+{
 	yyin=fopen("code.simple","r");
 	yylex();
 	fclose(yyin);
+	printf("\n");
 	return 0;
 }
 

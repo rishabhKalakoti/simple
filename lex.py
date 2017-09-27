@@ -23,6 +23,7 @@ def lexer(code):
 		"COMMA":[","],\
 		"NEWLINE":["\n"],\
 		}
+	
 	# for removing symbols not present in code from the symbol table
 		
 	for symbol in symbolTable:
