@@ -15,9 +15,16 @@ void yyerror(const char *s);
 }
 %token <ival> NUM
 %token <sval> VAR
-%token END ENDL
+%token ENDL
 %token ARITHOP
-
+%token RELOP
+%token END
+%token IF
+%token ELSE
+%token LOOP
+%token OVER
+%token NOTOP
+%token LOGICOP
 %%
 stmt:
 	dec_list
@@ -28,16 +35,36 @@ dec_list:
 	;
 dec:
 	asst
+	| conditional
+	| loop_stmt
+	;
+loop_stmt:
+	LOOP IF '(' logic_exp ')' ENDLS dec_list END LOOP ENDLS
+	| LOOP VAR OVER NUM ENDLS dec_list END LOOP
+	;
+conditional:
+	IF '(' logic_exp ')' ENDLS dec_list  ELSE conditional		
+	| IF '(' logic_exp ')' ENDLS dec_list  ELSE ENDLS dec_list END IF ENDLS
+	| IF '(' logic_exp ')' ENDLS dec_list END IF ENDLS	
+	;
+logic_exp:
+	logic_exp LOGICOP rel_exp
+	| rel_exp
 	;
 asst:
-	VAR '=' arith_exp ENDLS
+	VAR '=' logic_exp ENDLS
+	;
+rel_exp:
+	rel_exp RELOP arith_exp
+	| arith_exp
 	;
 arith_exp:
 	arith_exp ARITHOP term
 	| term
 	;
 term:
-	NUM 
+	'(' logic_exp ')'
+	| NUM 
 	| VAR
 	;
 ENDLS:	ENDLS ENDL

@@ -47,9 +47,16 @@ extern int yydebug;
   {
     NUM = 258,
     VAR = 259,
-    END = 260,
-    ENDL = 261,
-    ARITHOP = 262
+    ENDL = 260,
+    ARITHOP = 261,
+    RELOP = 262,
+    END = 263,
+    IF = 264,
+    ELSE = 265,
+    LOOP = 266,
+    OVER = 267,
+    NOTOP = 268,
+    LOGICOP = 269
   };
 #endif
 
@@ -63,7 +70,7 @@ union YYSTYPE
 	int ival;
 	char *sval;
 
-#line 67 "parser.tab.h" /* yacc.c:1909  */
+#line 74 "parser.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
