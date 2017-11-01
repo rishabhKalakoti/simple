@@ -3,25 +3,7 @@ import re
 def lexer(code):
 	symbolTable = {\
 		"VAR":[],\
-		"NUM":[],\
-		"FNAME":[],\
-		"RELOP":["==",">","<",">=","<=","!="],\
-		"ARITHOP":["+","-","*","/"],\
-		"LOGICOP":["and","or"],\
-		"NOTOP":["not"],\
-		"IF":["if"],\
-		"FUNC":["func"],\
-		"END":["end"],\
-		"LOOP":["loop"],\
-		"OVER":["over"],\
-		"LPAREN":["("],\
-		"RPAREN":[")"],\
-		"ASSTOP":["="],\
-		"BREAK":["next", "out"],\
-		"SPACE":[" "],\
-		"CALLOP":["`"],\
-		"COMMA":[","],\
-		"NEWLINE":["\n"],\
+		"FNAME":[]
 		}
 	
 	# for removing symbols not present in code from the symbol table
@@ -61,8 +43,11 @@ def lexer(code):
 		[r'\#FUNC[a-zA-z0-9_]', "#FUNC#SPACE#FNAME"],\
 		]
 	
-	symbolTable["VAR"].extend(list(set(re.findall(r'\$[a-zA-Z0-9_]*', code))))
-	symbolTable["NUM"].extend(list(set(re.findall(r'[0-9]+', code))))
+	#symbolTable["VAR"].extend(list(set(re.findall(r'\$[a-zA-Z0-9_]*', code))))
+	for element in list(set(re.findall(r'\$[a-zA-Z0-9_]*', code))):
+		symbolTable["VAR"].append([element, "NA"])
+		
+	#symbolTable["NUM"].extend(list(set(re.findall(r'[0-9]+', code))))
 	symbolTable["FNAME"].extend(list(set(re.findall(r'func [a-zA-Z0-9_]*', code))))
 
 	code = re.sub(r'\#FUNC\#SPACE[a-zA-Z0-9_]*',"#CALLOP#FNAME",code)

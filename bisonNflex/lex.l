@@ -1,6 +1,7 @@
 %{
 #include "parser.tab.h"
 #define YY_DECL extern int yylex()
+
 int line_no = 1;
 %}
 

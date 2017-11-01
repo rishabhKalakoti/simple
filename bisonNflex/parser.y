@@ -8,6 +8,15 @@ extern int yyparse();
 extern FILE *yyin;
 extern int line_no;
 void yyerror(const char *s);
+
+typedef struct node
+{
+	char type;
+	char* name[20];
+	struct node* next;
+}element;
+element* var=NULL;
+
 %}
 %union {
 	int ival;
@@ -54,7 +63,7 @@ logic_exp:
 	| rel_exp
 	;
 asst:
-	VAR '=' logic_exp ENDLS
+	VAR '=' logic_exp ENDLS			{}
 	;
 rel_exp:
 	rel_exp RELOP arith_exp
@@ -87,3 +96,6 @@ void yyerror(const char *s) {
 	printf("Syntax error on line %d\n", line_no);
 	exit(-1);
 }
+
+
+

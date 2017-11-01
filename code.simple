@@ -1,6 +1,5 @@
 $n = $n+3/2
 $n = $c*($s) + $d
-
 loop $i over 10
 $i=$i+1+($i)
 end loop
@@ -8,7 +7,7 @@ end loop
 loop if($a)
 $i=$i
 end loop
-
+$n="as"+1
 
 if($a==$b and $c==$d)
 $a=10

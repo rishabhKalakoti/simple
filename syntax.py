@@ -118,6 +118,7 @@ def isVarAsst(stmt):
 		return False
 	if not isArithExp(re.match(r'\#VAR(\#SPACE)?\#ASSTOP(.*)$', stmt).group(2)):
 		return False
+	
 	return True
 
 def isFunctionCall(stmt):
@@ -171,11 +172,16 @@ def isArithExp(stmt):
 	for term in re.split(r'\#ARITHOP', stmt):
 		if not (isTerm(term)):
 			return False
+	global ERROR
+	terms=re.split(r'\#ARITHOP', stmt)
+	if ("#NUM" in terms) and ("#STR" in terms):
+		ERROR=ERROR+"Type mismatch in statement\n"
+		return False
 	return True
 
 def isTerm(term):
 	global ERROR
-	if re.match(r'\#VAR$|\#NUM$|#LPAREN.*\#RPAREN$', term)==None:
+	if re.match(r'\#VAR$|\#NUM$|\#STR|\#LPAREN.*\#RPAREN$', term)==None:
 		ERROR=ERROR + "Invalid term\n"
 		return False
 	if re.match(r'\#LPAREN(.*)\#RPAREN$', term)!=None:

@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.0.2.  */
+/* A Bison parser, made by GNU Bison 3.0.4.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "3.0.2"
+#define YYBISON_VERSION "3.0.4"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -74,7 +74,16 @@ extern FILE *yyin;
 extern int line_no;
 void yyerror(const char *s);
 
-#line 78 "parser.tab.c" /* yacc.c:339  */
+typedef struct node
+{
+	char type;
+	char* name[20];
+	struct node* next;
+}element;
+element* var=NULL;
+
+
+#line 87 "parser.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -127,17 +136,19 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE YYSTYPE;
+
 union YYSTYPE
 {
-#line 12 "parser.y" /* yacc.c:355  */
+#line 21 "parser.y" /* yacc.c:355  */
 
 	int ival;
 	float fval;
 	char *sval;
 
-#line 140 "parser.tab.c" /* yacc.c:355  */
+#line 149 "parser.tab.c" /* yacc.c:355  */
 };
+
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -151,7 +162,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 155 "parser.tab.c" /* yacc.c:358  */
+#line 166 "parser.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -450,9 +461,9 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    32,    32,    35,    36,    39,    40,    41,    44,    45,
-      48,    49,    50,    53,    54,    57,    60,    61,    64,    65,
-      68,    69,    70,    72,    73
+       0,    41,    41,    44,    45,    48,    49,    50,    53,    54,
+      57,    58,    59,    62,    63,    66,    69,    70,    73,    74,
+      77,    78,    79,    81,    82
 };
 #endif
 
@@ -1259,8 +1270,14 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-      
-#line 1264 "parser.tab.c" /* yacc.c:1646  */
+        case 15:
+#line 66 "parser.y" /* yacc.c:1646  */
+    {}
+#line 1277 "parser.tab.c" /* yacc.c:1646  */
+    break;
+
+
+#line 1281 "parser.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1488,7 +1505,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 75 "parser.y" /* yacc.c:1906  */
+#line 84 "parser.y" /* yacc.c:1906  */
 
 
 int main() {
@@ -1504,3 +1521,6 @@ void yyerror(const char *s) {
 	printf("Syntax error on line %d\n", line_no);
 	exit(-1);
 }
+
+
+
