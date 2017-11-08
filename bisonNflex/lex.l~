@@ -24,4 +24,8 @@ loop				{return LOOP;}
 over				{return OVER;}
 .				{return yytext[0];}
 %%
-
+/*
+int yywrap()
+{
+	return 1;
+}*/
