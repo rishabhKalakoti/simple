@@ -12,8 +12,10 @@ not				{return NOTOP;}
 and|or				{return LOGICOP;}
 [=\(\)]				{return yytext[0];}
 [\+\-\*\/]			{return ARITHOP;}
+[0-9]+\.[0-9]+			{yylval.fval = atof(yytext); return FLOAT;}
 [0-9]+		  		{yylval.ival = atoi(yytext); return NUM;}
 $[a-zA-Z0-9_]*	  		{yylval.sval = strdup(yytext); return VAR;}
+".*"				{return STR;}
 \n				{++line_no; return ENDL;}
 if				{return IF;}
 end				{return END;}

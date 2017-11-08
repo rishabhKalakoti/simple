@@ -48,16 +48,17 @@ extern int yydebug;
     NUM = 258,
     FLOAT = 259,
     VAR = 260,
-    ENDL = 261,
-    ARITHOP = 262,
-    RELOP = 263,
-    END = 264,
-    IF = 265,
-    ELSE = 266,
-    LOOP = 267,
-    OVER = 268,
-    NOTOP = 269,
-    LOGICOP = 270
+    STR = 261,
+    ENDL = 262,
+    ARITHOP = 263,
+    RELOP = 264,
+    END = 265,
+    IF = 266,
+    ELSE = 267,
+    LOOP = 268,
+    OVER = 269,
+    NOTOP = 270,
+    LOGICOP = 271
   };
 #endif
 
@@ -66,13 +67,13 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 21 "parser.y" /* yacc.c:1909  */
+#line 25 "parser.y" /* yacc.c:1909  */
 
 	int ival;
 	float fval;
-	char *sval;
+	char* sval;
 
-#line 76 "parser.tab.h" /* yacc.c:1909  */
+#line 77 "parser.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
